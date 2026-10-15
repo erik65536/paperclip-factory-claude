@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Paperclip Factory</title>
+  <meta name="description" content="Start in a garage bending wire by hand. End by turning the universe into paperclips. A hand-drawn incremental game.">
+  <meta name="theme-color" content="#f3ead7">
+  <link rel="icon" href="assets/icon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&family=Permanent+Marker&family=VT323&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-theme="garage">
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <defs>
+      <filter id="rough" x="-5%" y="-5%" width="110%" height="110%">
+        <feTurbulence id="rough-noise" type="fractalNoise" baseFrequency="0.035" numOctaves="2" seed="1" result="n"/>
+        <feDisplacementMap in="SourceGraphic" in2="n" scale="2.6" xChannelSelector="R" yChannelSelector="G"/>
+      </filter>
+      <filter id="rough-strong" x="-5%" y="-5%" width="110%" height="110%">
+        <feTurbulence id="rough-noise2" type="fractalNoise" baseFrequency="0.05" numOctaves="2" seed="3" result="n"/>
+        <feDisplacementMap in="SourceGraphic" in2="n" scale="4" xChannelSelector="R" yChannelSelector="G"/>
+      </filter>
+      <pattern id="hatch" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+        <line x1="0" y1="0" x2="0" y2="6" stroke="currentColor" stroke-width="1.2" opacity=".35"/>
+      </pattern>
+    </defs>
+  </svg>
+
+  <div id="app">
+    <header id="top">
+      <div class="brand"><span class="logo-clip" aria-hidden="true"></span><span>Paperclip Factory</span></div>
+      <div id="phase-chip" class="chip"></div>
+      <div id="goal" class="goal"><div class="goal-label"></div><div class="bar"><i></i></div></div>
+      <div id="clip-total" class="chip big-num" title="Total paperclips ever made"></div>
+      <div class="top-btns">
+        <button id="btn-journal" class="icon-btn" title="Journal" aria-label="Journal">📓<b class="dot" hidden></b></button>
+        <button id="btn-menu" class="icon-btn" title="Menu" aria-label="Menu">☰</button>
+      </div>
+    </header>
+
+    <main id="stage">
+      <section id="scene" class="card scene" aria-label="Scene"></section>
+      <section id="controls" class="card controls" data-tab="work"></section>
+      <section id="shop" class="card shop" data-tab="shop">
+        <h2 class="shop-title"></h2>
+        <div class="advance-slot"></div>
+        <div class="shop-list"></div>
+        <div class="shop-foot"></div>
+      </section>
+      <section id="logbox" class="card logbox" data-tab="log">
+        <h2>Log</h2>
+        <ol id="log"></ol>
+      </section>
+    </main>
+
+    <div id="ticker" aria-live="off"><span></span></div>
+
+    <nav id="tabs" aria-label="Sections">
+      <button data-show="work" class="on">⚙ Work</button>
+      <button data-show="shop">🛒 Upgrades<b class="badge" hidden></b></button>
+      <button data-show="log">📜 Log</button>
+    </nav>
+  </div>
+
+  <div id="memo-root"></div>
+  <div id="modal-root"></div>
+  <div id="toasts" aria-live="polite"></div>
+  <div id="fx"></div>
+
+  <noscript>Paperclip Factory needs JavaScript. The paperclips are, unfortunately, digital.</noscript>
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>
